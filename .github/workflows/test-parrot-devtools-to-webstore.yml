@@ -3,9 +3,7 @@ name: Test Deploy parrot-devtools to Chrome Webstore
 # only trigger on pull request closed events
 on:
   pull_request_review_comment:
-    types:
-      - created
-      - deleted
+    types: [created]
 jobs:
   deploy_job:
     # this job will only run if the PR has been merged
