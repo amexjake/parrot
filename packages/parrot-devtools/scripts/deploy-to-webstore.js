@@ -13,17 +13,23 @@ const webStore = webstoreClient({
   refreshToken: process.env.CHROME_WEBSTORE_ACCESS_TOKEN,
 });
 
-webStore.fetchToken().then(token => {
-  // Token is a string
+webStore
+  .fetchToken()
+  .then(token => {
+    // Token is a string
+    console.log('token fetching success');
+    webStore
+      .uploadExisting(parrotZipFile, token)
+      .then(uploadRes => {
+        // Response is a Resource Representation
+        // https://developer.chrome.com/webstore/webstore_api/items#resource
+        console.log(uploadRes);
+      })
+      .catch(e => console.error(`error uploading zip: ${e}`));
 
-  webStore.uploadExisting(parrotZipFile, token).then(uploadRes => {
-    // Response is a Resource Representation
-    // https://developer.chrome.com/webstore/webstore_api/items#resource
-    console.log(uploadRes);
-  });
-
-  // webStore.publish(target, token).then(res => {
-  //   // Response is documented here:
-  //   // https://developer.chrome.com/webstore/webstore_api/items/publish
-  // });
-});
+    // webStore.publish(target, token).then(res => {
+    //   // Response is documented here:
+    //   // https://developer.chrome.com/webstore/webstore_api/items/publish
+    // });
+  })
+  .catch(e => console.error(`error fetching token: ${e}`));
