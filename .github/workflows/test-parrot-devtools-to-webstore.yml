@@ -12,6 +12,7 @@ jobs:
     # this job will only run if the PR has been merged
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: ls
       - run: cd packages/parrot-devtools
       - run: npm run deploy:extension
