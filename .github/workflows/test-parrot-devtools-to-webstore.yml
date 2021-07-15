@@ -1,11 +1,7 @@
 name: Test Deploy parrot-devtools to Chrome Webstore
 
 # only trigger on pull request closed events
-on:
-  pull_request_review_comment:
-    types:
-      - created
-      - deleted
+on: issue_comment
 jobs:
   deploy_job:
     # this job will only run if the PR has been merged
@@ -13,6 +9,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Install NPM packages
+        run: npm install
+        working-directory: packages/parrot-devtools
       - name: Run deploy script
         working-directory: packages/parrot-devtools
         env:
