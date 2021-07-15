@@ -16,7 +16,8 @@
     "build": "npm run bundle",
     "bundle": "webpack -p && npm run pack:extension && npm run pack:base",
     "pack:extension": "node scripts/pack-extension.js",
-    "pack:base": "node scripts/pack-base.js"
+    "pack:base": "node scripts/pack-base.js",
+    "deploy:extension": "node scripts/deploy-to-webstore.js"
   },
   "license": "Apache-2.0",
   "repository": "americanexpress/parrot",
