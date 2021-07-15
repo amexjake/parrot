@@ -1,0 +1,16 @@
+name: Test Deploy parrot-devtools to Chrome Webstore
+
+# only trigger on pull request closed events
+on:
+  pull_request:
+  pull_request_review_comment:
+    types:
+      - created
+      - deleted
+jobs:
+  deploy_job:
+    # this job will only run if the PR has been merged
+    runs-on: ubuntu-latest
+    steps:
+      - run: cd packages/parrot-devtools
+      - run: npm run deploy:extension
