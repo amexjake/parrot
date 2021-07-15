@@ -2,7 +2,6 @@ name: Test Deploy parrot-devtools to Chrome Webstore
 
 # only trigger on pull request closed events
 on:
-  pull_request:
   pull_request_review_comment:
     types:
       - created
@@ -12,7 +11,13 @@ jobs:
     # this job will only run if the PR has been merged
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: ls
-      - run: cd packages/parrot-devtools
-      - run: npm run deploy:extension
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run deploy script
+        working-directory: packages/parrot-devtools
+        env:
+          CHROME_WEBSTORE_ACCESS_TOKEN: ${{ secrets.CHROME_WEBSTORE_ACCESS_TOKEN }}
+          CHROME_WEBSTORE_CLIENT_ID: ${{ secrets.CHROME_WEBSTORE_CLIENT_ID }}
+          CHROME_WEBSTORE_CLIENT_SECRET: ${{ secrets.CHROME_WEBSTORE_CLIENT_SECRET }}
+          CHROME_WEBSTORE_PARROT_DEVTOOLS_APP_ID: ${{ secrets.CHROME_WEBSTORE_PARROT_DEVTOOLS_APP_ID }}
+        run: npm run deploy:extension
