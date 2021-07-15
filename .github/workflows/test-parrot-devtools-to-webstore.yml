@@ -12,10 +12,4 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Run deploy script
-        working-directory: packages/parrot-devtools
-        env:
-          CHROME_WEBSTORE_ACCESS_TOKEN: ${{ secrets.CHROME_WEBSTORE_ACCESS_TOKEN }}
-          CHROME_WEBSTORE_CLIENT_ID: ${{ secrets.CHROME_WEBSTORE_CLIENT_ID }}
-          CHROME_WEBSTORE_CLIENT_SECRET: ${{ secrets.CHROME_WEBSTORE_CLIENT_SECRET }}
-          CHROME_WEBSTORE_PARROT_DEVTOOLS_APP_ID: ${{ secrets.CHROME_WEBSTORE_PARROT_DEVTOOLS_APP_ID }}
-        run: npm run deploy:extension
+        run: ls -la
