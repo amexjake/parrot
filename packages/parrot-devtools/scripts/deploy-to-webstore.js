@@ -10,7 +10,7 @@ const webStore = webstoreClient({
   extensionId: process.env.CHROME_WEBSTORE_PARROT_DEVTOOLS_APP_ID,
   clientId: process.env.CHROME_WEBSTORE_CLIENT_ID,
   clientSecret: process.env.CHROME_WEBSTORE_CLIENT_SECRET,
-  refreshToken: process.env.CHROME_WEBSTORE_ACCESS_TOKEN,
+  refreshToken: process.env.CHROME_WEBSTORE_REFRESH_TOKEN,
 });
 
 webStore
